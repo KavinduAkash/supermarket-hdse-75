@@ -16,9 +16,9 @@
          </font>
       </Text>
       <Label text="Username" />
-      <TextField prefHeight="25.0" prefWidth="440.0" />
+      <TextField fx:id="usernameField" prefHeight="25.0" prefWidth="440.0" />
       <Label text="Password" />
-      <PasswordField />
-      <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="137.0" text="Login" />
+      <PasswordField fx:id="passwordField" />
+      <Button fx:id="loginButton" mnemonicParsing="false" onAction="#login" prefHeight="25.0" prefWidth="137.0" text="Login" />
    </children>
 </VBox>
