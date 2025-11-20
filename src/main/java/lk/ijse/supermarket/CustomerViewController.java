@@ -21,6 +21,8 @@ public class CustomerViewController{
         String address = customerAddress.getText();
         String salary = customerSalary.getText();
         
+        
+        
         System.out.println(name + " - " + address + " - " + salary);
     }
     
