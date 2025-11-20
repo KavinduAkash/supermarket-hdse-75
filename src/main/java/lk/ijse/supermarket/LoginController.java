@@ -24,7 +24,7 @@ public class LoginController {
         System.out.println(username + " - " + password);
         
         if(username.equals(realUsername) & password.equals(realPassword)) {
-        App.setRoot("primary");
+        App.setRoot("CustomerView");
         }
     }
     
