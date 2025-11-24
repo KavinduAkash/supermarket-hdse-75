@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import lk.ijse.supermarket.db.DBConnection;
+import lk.ijse.supermarket.model.CustomerModel;
 
 public class CustomerViewController{  
     
@@ -33,19 +34,11 @@ public class CustomerViewController{
         
         try {
        
-            Connection conn = DBConnection.getInstance().getConnection();
-       
-            String sql = "INSERT INTO customer (name, address, salary) VALUES (?,?,?)";
-                
-            PreparedStatement pstm = conn.prepareStatement(sql);
-                
-            pstm.setString(1, name);
-            pstm.setString(2, address);
-            pstm.setDouble(3, Double.parseDouble(salary));
-                
-            int result = pstm.executeUpdate();
+            CustomerModel customerModel = new CustomerModel();
+            boolean isSaved = customerModel.saveCustomer(name, address, Double.parseDouble(salary));
+            
 
-            if(result > 0) {
+            if(isSaved) {
                 System.out.println("Customer saved successfully!");
                 
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
