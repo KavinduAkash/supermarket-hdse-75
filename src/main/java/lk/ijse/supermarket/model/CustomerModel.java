@@ -8,10 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 import lk.ijse.supermarket.db.DBConnection;
 import lk.ijse.supermarket.dto.CustomerDTO;
+import lk.ijse.supermarket.util.CrudUtil;
 
 public class CustomerModel {
 
     public boolean saveCustomer(CustomerDTO customerDTO) throws SQLException {
+        /*
         Connection conn = DBConnection.getInstance().getConnection();
         
         String sql = "INSERT INTO customer (name, address, salary) VALUES (?,?,?)";
@@ -25,10 +27,15 @@ public class CustomerModel {
         int result = pstm.executeUpdate();
         
         return result>0;
+        */
+        
+        boolean result = CrudUtil.execute("INSERT INTO customer (name, address, salary) VALUES (?,?,?)", customerDTO.getName(), customerDTO.getAddress(), customerDTO.getSalary());
+        return result;
     }
     
     public CustomerDTO searchCustomer(String id) throws SQLException {
     
+        /*
         Connection conn = DBConnection.getInstance().getConnection();
                 
         String sql = "SELECT * FROM customer WHERE id=?";
@@ -37,6 +44,9 @@ public class CustomerModel {
         ptsm.setInt(1, Integer.parseInt(id));
                 
         ResultSet rs = ptsm.executeQuery();
+        */
+        
+        ResultSet rs = CrudUtil.execute("SELECT * FROM customer WHERE id=?", Integer.parseInt(id));
         
         CustomerDTO customerDTO = null;
         
@@ -55,6 +65,7 @@ public class CustomerModel {
     
     public boolean updateCustomer(CustomerDTO customerDTO) throws SQLException  {
     
+            /*
             Connection conn = DBConnection.getInstance().getConnection();
        
             String sql = "UPDATE customer SET name=?, address=?, salary=? WHERE id=?";
@@ -69,10 +80,15 @@ public class CustomerModel {
             int result = pstm.executeUpdate();
             
             return result>0;
+            */
+            
+            boolean result = CrudUtil.execute("UPDATE customer SET name=?, address=?, salary=? WHERE id=?",customerDTO.getName(),customerDTO.getAddress(), customerDTO.getSalary(), customerDTO.getId());
+            return result;
     }
     
     public boolean deleteCustomer(String id) throws SQLException {
     
+            /*
             Connection conn = DBConnection.getInstance().getConnection();
        
             String sql = "DELETE FROM customer WHERE id=?";
@@ -84,10 +100,17 @@ public class CustomerModel {
             int result = pstm.executeUpdate();
         
             return result>0;
+            */
+            
+            
+            boolean result = CrudUtil.execute("DELETE FROM customer WHERE id=?", id);
+            return result;
+            
     }
     
     public List<CustomerDTO> getAllCustomers() throws SQLException {
     
+        /*
         Connection conn = DBConnection.getInstance().getConnection();
         
         String sql = "SELECT * FROM customer";
@@ -95,6 +118,9 @@ public class CustomerModel {
         PreparedStatement ptsm = conn.prepareStatement(sql);
         
         ResultSet rs = ptsm.executeQuery();
+        */
+        
+        ResultSet rs = CrudUtil.execute("SELECT * FROM customer");
         
         List<CustomerDTO> customerList = new ArrayList<>();
         

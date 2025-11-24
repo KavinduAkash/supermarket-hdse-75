@@ -2,22 +2,36 @@ package lk.ijse.supermarket.util;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import lk.ijse.supermarket.db.DBConnection;
 
 public class CrudUtil {
 
-    public static boolean execute(String sql, String id) throws SQLException {
-    
+    public static <T> T execute(String sql, Object... obj) throws SQLException {
+        
+        // ["Saman", "Panadura", 1000.0, 43]
+        
         Connection conn = DBConnection.getInstance().getConnection();
         
         PreparedStatement ptsm = conn.prepareStatement(sql);
         
-        ptsm.setInt(1, Integer.parseInt(id));
+        for(int i=0; i<obj.length; i++) {
+            ptsm.setObject(i+1, obj[i]); // ptsm.setObject(4, 43);
+        }
         
-        int result = ptsm.executeUpdate();
+        if(sql.startsWith("select") || sql.startsWith("SELECT")) {
         
-        return result>0;
+            ResultSet rs = ptsm.executeQuery();
+            return (T)rs;
+            
+        } else {
+        
+            int result = ptsm.executeUpdate();
+            boolean rs = result>0;
+            return (T)(Boolean)rs;
+            
+        }
         
     }
     
