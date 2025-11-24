@@ -1,9 +1,12 @@
 package lk.ijse.supermarket.controller;
 
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -13,7 +16,7 @@ import lk.ijse.supermarket.db.DBConnection;
 import lk.ijse.supermarket.dto.CustomerDTO;
 import lk.ijse.supermarket.model.CustomerModel;
 
-public class CustomerViewController{  
+public class CustomerViewController implements Initializable {  
     
     @FXML
     private TextField idField;
@@ -26,6 +29,11 @@ public class CustomerViewController{
     
     @FXML
     private TextField customerSalary;
+    
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        loadCustomerTable();
+    }
     
     @FXML
     private void saveCustomer() {
@@ -175,6 +183,10 @@ public class CustomerViewController{
         customerAddress.setText("");
         customerSalary.setText("");
         
+    }
+    
+    private void loadCustomerTable() {
+        System.out.println("Customer Table Loaded!!!");
     }
     
 }

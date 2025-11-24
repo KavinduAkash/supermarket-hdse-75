@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import lk.ijse.supermarket.db.DBConnection;
 import lk.ijse.supermarket.dto.CustomerDTO;
 
@@ -84,4 +86,28 @@ public class CustomerModel {
             return result>0;
     }
     
+    public List<CustomerDTO> getAllCustomers() throws SQLException {
+    
+        Connection conn = DBConnection.getInstance().getConnection();
+        
+        String sql = "SELECT * FROM customer";
+        
+        PreparedStatement ptsm = conn.prepareStatement(sql);
+        
+        ResultSet rs = ptsm.executeQuery();
+        
+        List<CustomerDTO> customerList = new ArrayList<>();
+        
+        while(rs.next()) {
+            int id = rs.getInt("id");
+            String name = rs.getString("name");
+            String address = rs.getString("address");
+            double salary = rs.getDouble("salary");
+            
+            CustomerDTO customerDTO = new CustomerDTO(id, name, address, salary);
+            customerList.add(customerDTO);
+        }
+        
+        return customerList;
+    }
 }
