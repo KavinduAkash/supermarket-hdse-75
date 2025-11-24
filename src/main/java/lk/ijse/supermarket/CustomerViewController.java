@@ -52,6 +52,8 @@ public class CustomerViewController{
                 alert.setHeaderText("Customer saved successfully!");
                 alert.show();
                 
+                cleanFields();
+                
             } else {
                 System.out.println("Sorry! Something went wrong!");
                 
@@ -104,11 +106,60 @@ public class CustomerViewController{
                 e.printStackTrace();
             }
             
-            
-            
         }
         
     }
     
+    @FXML
+    private void handleCustomerUpdate() {
+    
+        String id = idField.getText();
+        String name = customerName.getText();
+        String address = customerAddress.getText();
+        String salary = customerSalary.getText();
+        
+        try {
+       
+            Connection conn = DBConnection.getInstance().getConnection();
+       
+            String sql = "UPDATE customer SET name=?, address=?, salary=? WHERE id=?";
+                
+            PreparedStatement pstm = conn.prepareStatement(sql);
+                
+            pstm.setString(1, name);
+            pstm.setString(2, address);
+            pstm.setDouble(3, Double.parseDouble(salary));
+            pstm.setInt(4, Integer.parseInt(id));
+                
+            int result = pstm.executeUpdate();
+
+            if(result > 0) {
+                
+                new Alert(Alert.AlertType.INFORMATION, "Customer updated successfully!").show();
+                
+                cleanFields();
+                
+            } else {
+                
+                new Alert(Alert.AlertType.ERROR, "Something went wrong").show();
+            
+            }
+            
+        } catch(Exception e) {
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, "Something went wrong").show();
+        }
+        
+    }
+    
+    
+    private void cleanFields() {
+    
+        idField.setText("");
+        customerName.setText("");
+        customerAddress.setText("");
+        customerSalary.setText("");
+        
+    }
     
 }
