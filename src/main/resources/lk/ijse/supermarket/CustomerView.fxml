@@ -54,7 +54,7 @@
                   <Insets left="2.0" right="2.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" style="-fx-background-color: red;" text="Delete" textFill="WHITE">
+            <Button mnemonicParsing="false" onAction="#handleCustomerDelete" style="-fx-background-color: red;" text="Delete" textFill="WHITE">
                <HBox.margin>
                   <Insets left="2.0" right="2.0" />
                </HBox.margin>
