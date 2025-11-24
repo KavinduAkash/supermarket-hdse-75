@@ -2,13 +2,18 @@ package lk.ijse.supermarket;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 public class CustomerViewController{  
+    
+    @FXML
+    private TextField idField;
     
     @FXML
     private TextField customerName;
@@ -65,7 +70,43 @@ public class CustomerViewController{
     @FXML
     private void handleSearchCustomer(KeyEvent event) {
     
-        System.out.println(event.getCode());
+        if(event.getCode() == KeyCode.ENTER) {
+            
+            String id = idField.getText();
+            
+            try {
+            
+                Connection conn = DBConnection.getInstance().getConnection();
+                
+                String sql = "SELECT * FROM customer WHERE id=?";
+                
+                PreparedStatement ptsm = conn.prepareStatement(sql);
+                ptsm.setInt(1, Integer.parseInt(id));
+                
+                ResultSet rs = ptsm.executeQuery();
+                
+                if(rs.next()) {
+                    
+                    int cusId = rs.getInt("id");
+                    String cusName = rs.getString("name");
+                    String cusAddress = rs.getString("address");
+                    double cusSalary = rs.getDouble("salary");
+                    
+                    customerName.setText(cusName);
+                    customerAddress.setText(cusAddress);
+                    customerSalary.setText(String.valueOf(cusSalary));
+                    
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Customer not found!").show();
+                }
+                
+            } catch(Exception e) {
+                e.printStackTrace();
+            }
+            
+            
+            
+        }
         
     }
     
