@@ -71,8 +71,6 @@ public class CustomerViewController implements Initializable {
         String salary = customerSalary.getText();
         
         try {
-       
-            CustomerModel customerModel = new CustomerModel();
             
             CustomerDTO cusDTO = new CustomerDTO(name, address, Double.parseDouble(salary));
             
@@ -112,7 +110,6 @@ public class CustomerViewController implements Initializable {
             
             try {
             
-                CustomerModel customerModel = new CustomerModel();    
                 CustomerDTO customerDTO = customerModel.searchCustomer(id);
                 
                 if(customerDTO!=null) {
@@ -140,8 +137,6 @@ public class CustomerViewController implements Initializable {
         String salary = customerSalary.getText();
         
         try {
-       
-            CustomerModel customerModel = new CustomerModel();
             
             CustomerDTO cusDTO = new CustomerDTO(Integer.parseInt(id), name, address, Double.parseDouble(salary));
             
@@ -174,7 +169,6 @@ public class CustomerViewController implements Initializable {
         
         try {
        
-            CustomerModel customerModel = new CustomerModel();
             boolean isDeleted = customerModel.deleteCustomer(id);
 
             if(isDeleted) {
@@ -218,7 +212,6 @@ public class CustomerViewController implements Initializable {
     private void loadCustomerTable() {
         try {
         
-            CustomerModel customerModel = new CustomerModel();
             List<CustomerDTO> customerList = customerModel.getAllCustomers();
             
             ObservableList<CustomerDTO> obList = FXCollections.observableArrayList();
