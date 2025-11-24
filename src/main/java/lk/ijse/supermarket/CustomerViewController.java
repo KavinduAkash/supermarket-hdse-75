@@ -41,7 +41,7 @@ public class CustomerViewController{
             if(result > 0) {
                 System.out.println("Customer saved successfully!");
                 
-                Alert alert = new Alert(Alert.AlertType.ERROR);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Customer Saved!");
                 alert.setHeaderText("Customer saved successfully!");
                 alert.show();

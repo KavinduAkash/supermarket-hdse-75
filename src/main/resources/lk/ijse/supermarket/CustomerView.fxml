@@ -13,8 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/25" fx:controller="lk.ijse.supermarket.CustomerViewController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.supermarket.CustomerViewController">
    <children>
       <VBox prefHeight="20.0" prefWidth="600.0" style="-fx-background-color: pink;">
          <children>
@@ -25,25 +24,25 @@
             </Text>
          </children>
       </VBox>
-      <HBox layoutX="35.0" layoutY="39.0" prefHeight="29.0" prefWidth="525.0">
+      <HBox layoutX="37.0" layoutY="75.0" prefHeight="29.0" prefWidth="525.0">
          <children>
             <Label text="Customer Name:      " />
             <TextField fx:id="customerName" prefHeight="25.0" prefWidth="387.0" />
          </children>
       </HBox>
-      <HBox layoutX="36.0" layoutY="76.0" prefHeight="29.0" prefWidth="525.0">
+      <HBox layoutX="38.0" layoutY="112.0" prefHeight="29.0" prefWidth="525.0">
          <children>
             <Label text="Customer Address: " />
             <TextArea fx:id="customerAddress" prefHeight="38.0" prefWidth="386.0" />
          </children>
       </HBox>
-      <HBox layoutX="36.0" layoutY="125.0" prefHeight="29.0" prefWidth="525.0">
+      <HBox layoutX="38.0" layoutY="161.0" prefHeight="29.0" prefWidth="525.0">
          <children>
             <Label text="Customer Salary:      " />
             <TextField fx:id="customerSalary" prefHeight="25.0" prefWidth="387.0" />
          </children>
       </HBox>
-      <HBox layoutX="303.0" layoutY="163.0" prefHeight="49.0" prefWidth="230.0">
+      <HBox alignment="CENTER" layoutX="347.0" layoutY="190.0" prefHeight="49.0" prefWidth="230.0">
          <children>
             <Button mnemonicParsing="false" onAction="#saveCustomer" style="-fx-background-color: green;" text="Save" textFill="WHITE">
                <HBox.margin>
@@ -67,13 +66,19 @@
             </Button>
          </children>
       </HBox>
-      <TableView layoutX="10.0" layoutY="207.0" prefHeight="183.0" prefWidth="584.0">
+      <TableView layoutX="11.0" layoutY="246.0" prefHeight="127.0" prefWidth="584.0">
         <columns>
           <TableColumn prefWidth="75.0" text="ID" />
-          <TableColumn prefWidth="213.6107940673828" text="Customer Name" />
-            <TableColumn prefWidth="150.38919067382812" text="Customer Address" />
+          <TableColumn prefWidth="214.99998474121094" text="Customer Name" />
+            <TableColumn prefWidth="151.00003051757812" text="Customer Address" />
             <TableColumn prefWidth="145.95005798339844" text="Customer Salary" />
         </columns>
       </TableView>
+      <HBox layoutX="39.0" layoutY="35.0" prefHeight="29.0" prefWidth="525.0">
+         <children>
+            <Label text="Customer ID:            " />
+            <TextField onKeyPressed="#handleSearchCustomer" prefHeight="25.0" prefWidth="387.0" />
+         </children>
+      </HBox>
    </children>
 </AnchorPane>
