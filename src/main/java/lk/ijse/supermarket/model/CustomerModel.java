@@ -44,6 +44,19 @@ public class CustomerModel {
             return result>0;
     }
     
-    public void deleteCustomer() {}
+    public boolean deleteCustomer(String id) throws SQLException {
+    
+            Connection conn = DBConnection.getInstance().getConnection();
+       
+            String sql = "DELETE FROM customer WHERE id=?";
+                
+            PreparedStatement pstm = conn.prepareStatement(sql);
+          
+            pstm.setInt(1, Integer.parseInt(id));
+                
+            int result = pstm.executeUpdate();
+        
+            return result>0;
+    }
     
 }

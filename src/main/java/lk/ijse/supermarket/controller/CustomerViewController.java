@@ -151,17 +151,10 @@ public class CustomerViewController{
         
         try {
        
-            Connection conn = DBConnection.getInstance().getConnection();
-       
-            String sql = "DELETE FROM customer WHERE id=?";
-                
-            PreparedStatement pstm = conn.prepareStatement(sql);
-          
-            pstm.setInt(1, Integer.parseInt(id));
-                
-            int result = pstm.executeUpdate();
+            CustomerModel customerModel = new CustomerModel();
+            boolean isDeleted = customerModel.deleteCustomer(id);
 
-            if(result > 0) {
+            if(isDeleted) {
                 
                 new Alert(Alert.AlertType.INFORMATION, "Customer deleted successfully!").show();
                 
