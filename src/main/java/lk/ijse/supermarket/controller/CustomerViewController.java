@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import lk.ijse.supermarket.db.DBConnection;
+import lk.ijse.supermarket.dto.CustomerDTO;
 import lk.ijse.supermarket.model.CustomerModel;
 
 public class CustomerViewController{  
@@ -35,7 +36,10 @@ public class CustomerViewController{
         try {
        
             CustomerModel customerModel = new CustomerModel();
-            boolean isSaved = customerModel.saveCustomer(name, address, Double.parseDouble(salary));
+            
+            CustomerDTO cusDTO = new CustomerDTO(name, address, Double.parseDouble(salary));
+            
+            boolean isSaved = customerModel.saveCustomer(cusDTO);
             
 
             if(isSaved) {

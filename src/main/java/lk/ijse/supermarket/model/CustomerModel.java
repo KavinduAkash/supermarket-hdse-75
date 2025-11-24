@@ -4,19 +4,20 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import lk.ijse.supermarket.db.DBConnection;
+import lk.ijse.supermarket.dto.CustomerDTO;
 
 public class CustomerModel {
 
-    public boolean saveCustomer(String name, String address, double salary) throws SQLException {
+    public boolean saveCustomer(CustomerDTO customerDTO) throws SQLException {
         Connection conn = DBConnection.getInstance().getConnection();
         
         String sql = "INSERT INTO customer (name, address, salary) VALUES (?,?,?)";
         
         PreparedStatement pstm = conn.prepareStatement(sql);
         
-        pstm.setString(1, name);
-        pstm.setString(2, address);
-        pstm.setDouble(3, salary);
+        pstm.setString(1, customerDTO.getName());
+        pstm.setString(2, customerDTO.getAddress());
+        pstm.setDouble(3, customerDTO.getSalary());
         
         int result = pstm.executeUpdate();
         
