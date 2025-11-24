@@ -51,6 +51,7 @@ public class CustomerViewController implements Initializable {
     @FXML
     private TableColumn colSalary;
     
+    private final CustomerModel customerModel = new CustomerModel();
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
