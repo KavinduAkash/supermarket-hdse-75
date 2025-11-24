@@ -66,7 +66,6 @@ public class CustomerViewController{
         }
     }
     
-    
     @FXML
     private void handleSearchCustomer(KeyEvent event) {
     
@@ -76,26 +75,13 @@ public class CustomerViewController{
             
             try {
             
-                Connection conn = DBConnection.getInstance().getConnection();
+                CustomerModel customerModel = new CustomerModel();    
+                CustomerDTO customerDTO = customerModel.searchCustomer(id);
                 
-                String sql = "SELECT * FROM customer WHERE id=?";
-                
-                PreparedStatement ptsm = conn.prepareStatement(sql);
-                ptsm.setInt(1, Integer.parseInt(id));
-                
-                ResultSet rs = ptsm.executeQuery();
-                
-                if(rs.next()) {
-                    
-                    int cusId = rs.getInt("id");
-                    String cusName = rs.getString("name");
-                    String cusAddress = rs.getString("address");
-                    double cusSalary = rs.getDouble("salary");
-                    
-                    customerName.setText(cusName);
-                    customerAddress.setText(cusAddress);
-                    customerSalary.setText(String.valueOf(cusSalary));
-                    
+                if(customerDTO!=null) {
+                    customerName.setText(customerDTO.getName());
+                    customerAddress.setText(customerDTO.getAddress());
+                    customerSalary.setText(String.valueOf(customerDTO.getSalary()));
                 } else {
                     new Alert(Alert.AlertType.ERROR, "Customer not found!").show();
                 }
