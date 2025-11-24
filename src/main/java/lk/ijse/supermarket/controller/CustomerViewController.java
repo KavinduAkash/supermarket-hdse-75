@@ -4,10 +4,13 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
@@ -29,6 +32,22 @@ public class CustomerViewController implements Initializable {
     
     @FXML
     private TextField customerSalary;
+    
+    @FXML
+    private TableView tableCustomer;
+    
+    @FXML
+    private TableColumn colId;
+    
+    @FXML
+    private TableColumn colName;
+    
+    @FXML
+    private TableColumn colAddress;
+    
+    @FXML
+    private TableColumn colSalary;
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -185,8 +204,18 @@ public class CustomerViewController implements Initializable {
         
     }
     
+    
     private void loadCustomerTable() {
-        System.out.println("Customer Table Loaded!!!");
+        try {
+        
+            CustomerModel customerModel = new CustomerModel();
+            List<CustomerDTO> customerList = customerModel.getAllCustomers();
+            
+            
+            
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
     }
     
 }

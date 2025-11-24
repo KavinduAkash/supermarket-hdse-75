@@ -66,12 +66,12 @@
             </Button>
          </children>
       </HBox>
-      <TableView layoutX="11.0" layoutY="246.0" prefHeight="127.0" prefWidth="584.0">
+      <TableView fx:id="tableCustomer" layoutX="11.0" layoutY="246.0" prefHeight="127.0" prefWidth="584.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="ID" />
-          <TableColumn prefWidth="214.99998474121094" text="Customer Name" />
-            <TableColumn prefWidth="151.00003051757812" text="Customer Address" />
-            <TableColumn prefWidth="145.95005798339844" text="Customer Salary" />
+          <TableColumn fx:id="colId" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="colName" prefWidth="214.99998474121094" text="Customer Name" />
+            <TableColumn fx:id="colAddress" prefWidth="151.00003051757812" text="Customer Address" />
+            <TableColumn fx:id="colSalary" prefWidth="145.95005798339844" text="Customer Salary" />
         </columns>
       </TableView>
       <HBox layoutX="39.0" layoutY="35.0" prefHeight="29.0" prefWidth="525.0">
