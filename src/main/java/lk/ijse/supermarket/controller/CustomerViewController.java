@@ -118,20 +118,13 @@ public class CustomerViewController{
         
         try {
        
-            Connection conn = DBConnection.getInstance().getConnection();
-       
-            String sql = "UPDATE customer SET name=?, address=?, salary=? WHERE id=?";
-                
-            PreparedStatement pstm = conn.prepareStatement(sql);
-                
-            pstm.setString(1, name);
-            pstm.setString(2, address);
-            pstm.setDouble(3, Double.parseDouble(salary));
-            pstm.setInt(4, Integer.parseInt(id));
-                
-            int result = pstm.executeUpdate();
+            CustomerModel customerModel = new CustomerModel();
+            
+            CustomerDTO cusDTO = new CustomerDTO(Integer.parseInt(id), name, address, Double.parseDouble(salary));
+            
+            boolean isUpdated = customerModel.updateCustomer(cusDTO);
 
-            if(result > 0) {
+            if(isUpdated) {
                 
                 new Alert(Alert.AlertType.INFORMATION, "Customer updated successfully!").show();
                 

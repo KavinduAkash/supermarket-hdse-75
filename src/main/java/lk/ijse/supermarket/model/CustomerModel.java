@@ -26,7 +26,23 @@ public class CustomerModel {
     
     public void searchCustomer() {}
     
-    public void updateCustomer() {}
+    public boolean updateCustomer(CustomerDTO customerDTO) throws SQLException  {
+    
+            Connection conn = DBConnection.getInstance().getConnection();
+       
+            String sql = "UPDATE customer SET name=?, address=?, salary=? WHERE id=?";
+                
+            PreparedStatement pstm = conn.prepareStatement(sql);
+                
+            pstm.setString(1, customerDTO.getName());
+            pstm.setString(2, customerDTO.getAddress());
+            pstm.setDouble(3, customerDTO.getSalary());
+            pstm.setInt(4, customerDTO.getId());
+                
+            int result = pstm.executeUpdate();
+            
+            return result>0;
+    }
     
     public void deleteCustomer() {}
     
