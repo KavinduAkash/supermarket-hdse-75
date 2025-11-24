@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 
 public class CustomerViewController{  
     
@@ -59,5 +60,14 @@ public class CustomerViewController{
             e.printStackTrace();
         }
     }
+    
+    
+    @FXML
+    private void handleSearchCustomer(KeyEvent event) {
+    
+        System.out.println(event.getCode());
+        
+    }
+    
     
 }
