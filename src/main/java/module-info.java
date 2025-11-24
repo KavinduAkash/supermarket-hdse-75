@@ -4,6 +4,7 @@ module lk.ijse.supermarket {
     requires java.base;
     requires java.sql;
     
-    opens lk.ijse.supermarket to javafx.fxml;
+    opens lk.ijse.supermarket.controller to javafx.fxml;
     exports lk.ijse.supermarket;
+    exports lk.ijse.supermarket.controller;
 }

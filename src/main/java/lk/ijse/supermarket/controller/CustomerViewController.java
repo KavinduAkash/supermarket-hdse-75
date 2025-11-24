@@ -1,4 +1,4 @@
-package lk.ijse.supermarket;
+package lk.ijse.supermarket.controller;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,6 +9,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import lk.ijse.supermarket.db.DBConnection;
 
 public class CustomerViewController{  
     

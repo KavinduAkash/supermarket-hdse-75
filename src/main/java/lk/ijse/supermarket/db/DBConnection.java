@@ -1,4 +1,4 @@
-package lk.ijse.supermarket;
+package lk.ijse.supermarket.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
