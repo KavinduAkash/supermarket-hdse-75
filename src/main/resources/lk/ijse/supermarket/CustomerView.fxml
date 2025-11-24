@@ -59,7 +59,7 @@
                   <Insets left="2.0" right="2.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" style="-fx-background-color: yellow;" text="Reset">
+            <Button mnemonicParsing="false" onAction="#handleCustomerReset" style="-fx-background-color: yellow;" text="Reset">
                <HBox.margin>
                   <Insets left="2.0" right="2.0" />
                </HBox.margin>

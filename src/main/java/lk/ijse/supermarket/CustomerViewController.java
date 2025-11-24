@@ -190,6 +190,14 @@ public class CustomerViewController{
     }
     
     
+    @FXML
+    private void handleCustomerReset() {
+    
+        cleanFields();
+        
+    }
+    
+    
     private void cleanFields() {
     
         idField.setText("");
