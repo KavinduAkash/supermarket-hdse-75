@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -211,7 +213,13 @@ public class CustomerViewController implements Initializable {
             CustomerModel customerModel = new CustomerModel();
             List<CustomerDTO> customerList = customerModel.getAllCustomers();
             
+            ObservableList<CustomerDTO> obList = FXCollections.observableArrayList();
             
+            for (CustomerDTO customerDTO : customerList) {
+                obList.add(customerDTO);
+            }
+            
+            tableCustomer.setItems(obList);
             
         } catch(Exception e) {
             e.printStackTrace();
