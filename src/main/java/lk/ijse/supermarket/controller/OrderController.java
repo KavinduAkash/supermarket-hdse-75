@@ -12,14 +12,20 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import lk.ijse.supermarket.dto.CustomerDTO;
+import lk.ijse.supermarket.dto.ItemDTO;
 import lk.ijse.supermarket.model.CustomerModel;
+import lk.ijse.supermarket.model.ItemModel;
 
 public class OrderController implements Initializable {
 
     private final CustomerModel customerModel = new CustomerModel();
+    private final ItemModel itemModel = new ItemModel();
     
     @FXML
     private ComboBox<Number> comboCustomerId;
+    
+    @FXML
+    private ComboBox<Number> comboItemId;
     
     @FXML
     private Label lblCustomerAddressValue;
@@ -30,11 +36,20 @@ public class OrderController implements Initializable {
     @FXML
     private Label lblCustomerSalaryValue;
     
+    @FXML
+    private Label lblItemNameValue;
+
+    @FXML
+    private Label lblItemPriceValue;
+
+    @FXML
+    private Label lblItemQtyValue;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
         loadComboCustomerId();
+        loadComboItemId();
         
     }    
     
@@ -50,6 +65,26 @@ public class OrderController implements Initializable {
             }
             
             comboCustomerId.setItems(customerIdObList);
+            
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void loadComboItemId() {
+        try {
+        
+            List<ItemDTO> itemList = itemModel.getAllItems();
+            
+            System.out.println(itemList.size());
+            
+            ObservableList<Number> itemIdObList =  FXCollections.observableArrayList();
+            
+            for (ItemDTO itemDTO : itemList) {
+                itemIdObList.add(itemDTO.getId());
+            }
+            
+            comboItemId.setItems(itemIdObList);
             
         } catch(Exception e) {
             e.printStackTrace();
@@ -74,6 +109,32 @@ public class OrderController implements Initializable {
                 
             } else {
                 new Alert(Alert.AlertType.ERROR, "Customer not found!").show();
+            }
+            
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        
+    }
+    
+    @FXML
+    private void handleSelectComboItemId(ActionEvent event) {
+
+        try {
+        
+            Number selectedId = comboItemId.getSelectionModel().getSelectedItem();
+            int selecteitemId = selectedId.intValue();
+
+            ItemDTO itemDTO = itemModel.searchItem(selecteitemId);
+            
+            if(itemDTO!=null) {
+            
+                lblItemNameValue.setText(itemDTO.getName());
+                lblItemPriceValue.setText(String.valueOf(itemDTO.getUnitPrice()));
+                lblItemQtyValue.setText(String.valueOf(itemDTO.getQty()));
+                
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Item not found!").show();
             }
             
         } catch(Exception e) {

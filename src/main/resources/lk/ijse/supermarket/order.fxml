@@ -52,25 +52,25 @@
       <VBox layoutX="16.0" layoutY="93.0" prefHeight="43.0" prefWidth="150.0">
          <children>
             <Label text="Item ID:" />
-            <ComboBox prefWidth="150.0" style="-fx-background-color: none; -fx-border-color: black; -fx-border-width: 0 0 2px 0;" />
+            <ComboBox fx:id="comboItemId" onAction="#handleSelectComboItemId" prefWidth="150.0" style="-fx-background-color: none; -fx-border-color: black; -fx-border-width: 0 0 2px 0;" />
          </children>
       </VBox>
       <VBox layoutX="175.0" layoutY="93.0" prefHeight="43.0" prefWidth="150.0">
          <children>
             <Label text="Item Name:" />
-            <Label text="-" />
+            <Label fx:id="lblItemNameValue" text="-" />
          </children>
       </VBox>
       <VBox layoutX="340.0" layoutY="93.0" prefHeight="43.0" prefWidth="112.0">
          <children>
             <Label text="Available QTY:" />
-            <Label text="-" />
+            <Label fx:id="lblItemQtyValue" text="-" />
          </children>
       </VBox>
       <VBox layoutX="481.0" layoutY="93.0" prefHeight="43.0" prefWidth="99.0">
          <children>
             <Label text="Unit Price:" />
-            <Label text="-" />
+            <Label fx:id="lblItemPriceValue" text="-" />
          </children>
       </VBox>
       <VBox layoutX="16.0" layoutY="157.0" prefHeight="43.0" prefWidth="99.0">
