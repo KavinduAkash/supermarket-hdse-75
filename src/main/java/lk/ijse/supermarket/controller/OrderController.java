@@ -19,9 +19,33 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import lk.ijse.supermarket.dto.CustomerDTO;
 import lk.ijse.supermarket.dto.ItemDTO;
+import lk.ijse.supermarket.dto.OrderItemDTO;
 import lk.ijse.supermarket.dto.OrderItemTM;
 import lk.ijse.supermarket.model.CustomerModel;
 import lk.ijse.supermarket.model.ItemModel;
+
+/*
+SQL query for the order table creation
+======================================
+CREATE TABLE orders (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    date DATE NOT NULL,
+    customer_id INT NOT NULL,
+    FOREIGN KEY (customer_id) REFERENCES customer(id)
+);
+
+SQL query for the order item table creation
+===========================================
+CREATE TABLE order_items (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    order_id INT NOT NULL,
+    item_id INT NOT NULL,
+    qty INT NOT NULL,
+    price DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (order_id) REFERENCES orders(id),
+    FOREIGN KEY (item_id) REFERENCES item(id)
+);
+*/
 
 public class OrderController implements Initializable {
 
@@ -102,7 +126,6 @@ public class OrderController implements Initializable {
                     
                 });   
             }
-           
            
             @Override
             protected void updateItem(Void item, boolean empty) {
@@ -242,6 +265,27 @@ public class OrderController implements Initializable {
         }
         
         lblOrderTotal.setText(String.valueOf(total));
+        
+    }
+    
+      @FXML
+    private void handlePlaceOrder(ActionEvent event) {
+        // customer?
+        Number selectedId = comboCustomerId.getSelectionModel().getSelectedItem();
+        int customerId = selectedId.intValue();
+        
+        // order date
+        
+        // order items? - orderItemObList
+        
+          List<OrderItemDTO> orderItemList = new ArrayList<>();
+           
+          for (OrderItemTM orderItemTM : orderItemObList) {
+              OrderItemDTO orderItem = new OrderItemDTO(orderItemTM.getItemId(), orderItemTM.getQty(), orderItemTM.getItemPrice());
+              orderItemList.add(orderItem);
+          }
+        
+          new OrderDTO();
         
     }
     

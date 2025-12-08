@@ -119,7 +119,7 @@
                   <Insets bottom="10.0" right="10.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" style="-fx-background-color: green;" text="Place Order" textFill="WHITE">
+            <Button fx:id="btnPlaceOrder" mnemonicParsing="false" onAction="#handlePlaceOrder" style="-fx-background-color: green;" text="Place Order" textFill="WHITE">
                <HBox.margin>
                   <Insets bottom="10.0" right="10.0" />
                </HBox.margin>
