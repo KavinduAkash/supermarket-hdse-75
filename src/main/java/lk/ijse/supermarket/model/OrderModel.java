@@ -1,13 +1,36 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package lk.ijse.supermarket.model;
 
-/**
- *
- * @author kavinduakash
- */
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+import lk.ijse.supermarket.dto.OrderDTO;
+import lk.ijse.supermarket.dto.OrderItemDTO;
+import lk.ijse.supermarket.util.CrudUtil;
+
 public class OrderModel {
+
+    private final OrderItemModel orderItemModel = new OrderItemModel(); 
+    
+    public void placeOrder(OrderDTO orderDTO) throws SQLException {
+    
+        // orders table
+        boolean result = CrudUtil.execute(
+                "INSERT INTO orders VALUES (?,?)", 
+                orderDTO.getDate(),
+                orderDTO.getCustomerId()
+                );
+        
+        // order_items table
+        if(result) {
+        
+            ResultSet rs = CrudUtil.execute("SELECT id FROM orders ORDER BY id DESC LIMIT 1");
+            
+            orderItemModel.saveOrderItems(orderDTO.getOrderItems(), orderid);
+            
+        } else {
+        
+        }
+        
+    }
     
 }
