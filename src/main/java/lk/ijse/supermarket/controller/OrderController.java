@@ -26,6 +26,7 @@ import lk.ijse.supermarket.dto.OrderItemDTO;
 import lk.ijse.supermarket.dto.OrderItemTM;
 import lk.ijse.supermarket.model.CustomerModel;
 import lk.ijse.supermarket.model.ItemModel;
+import lk.ijse.supermarket.model.OrderModel;
 
 /*
 SQL query for the order table creation
@@ -107,6 +108,8 @@ public class OrderController implements Initializable {
     
     
     private final ObservableList<OrderItemTM> orderItemObList = FXCollections.observableArrayList();
+    
+    private final OrderModel orderModel = new OrderModel();
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -271,24 +274,40 @@ public class OrderController implements Initializable {
         
     }
     
-      @FXML
+    @FXML
     private void handlePlaceOrder(ActionEvent event) {
-        // customer?
-        Number selectedId = comboCustomerId.getSelectionModel().getSelectedItem();
-        int customerId = selectedId.intValue();
         
-        // order date
+        try {
         
-        // order items? - orderItemObList
-        
-          List<OrderItemDTO> orderItemList = new ArrayList<>();
-           
-          for (OrderItemTM orderItemTM : orderItemObList) {
-              OrderItemDTO orderItem = new OrderItemDTO(orderItemTM.getItemId(), orderItemTM.getQty(), orderItemTM.getItemPrice());
-              orderItemList.add(orderItem);
-          }
-        
-          OrderDTO orderDTO = new OrderDTO(customerId, new Date(), orderItemList);
+            Number selectedId = comboCustomerId.getSelectionModel().getSelectedItem();
+            int customerId = selectedId.intValue();
+
+              List<OrderItemDTO> orderItemList = new ArrayList<>();
+
+              for (OrderItemTM orderItemTM : orderItemObList) {
+
+                  OrderItemDTO orderItem = new OrderItemDTO(
+                          orderItemTM.getItemId(), 
+                          orderItemTM.getQty(), 
+                          orderItemTM.getItemPrice());
+
+                  orderItemList.add(orderItem);
+              }
+
+              OrderDTO orderDTO = new OrderDTO(customerId, new Date(), orderItemList);
+
+              boolean result = orderModel.placeOrder(orderDTO);
+              
+              if(result) {
+                new Alert(Alert.AlertType.INFORMATION, "Order Placed Successfully!").show();
+              } else {
+                new Alert(Alert.AlertType.ERROR, "Something went wrong!").show();
+              }
+            
+        } catch(Exception e) {
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, "Something went wrong!").show();
+        }
         
     }
     

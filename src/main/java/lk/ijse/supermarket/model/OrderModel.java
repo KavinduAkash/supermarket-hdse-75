@@ -11,26 +11,26 @@ public class OrderModel {
 
     private final OrderItemModel orderItemModel = new OrderItemModel(); 
     
-    public void placeOrder(OrderDTO orderDTO) throws SQLException {
+    public boolean placeOrder(OrderDTO orderDTO) throws SQLException {
     
         // orders table
         boolean result = CrudUtil.execute(
-                "INSERT INTO orders VALUES (?,?)", 
+                "INSERT INTO orders (date, customer_id) VALUES (?,?)", 
                 orderDTO.getDate(),
                 orderDTO.getCustomerId()
                 );
         
         // order_items table
         if(result) {
-        
             ResultSet rs = CrudUtil.execute("SELECT id FROM orders ORDER BY id DESC LIMIT 1");
-            
-            orderItemModel.saveOrderItems(orderDTO.getOrderItems(), orderid);
-            
+            if(rs.next()) {
+                int orderId = rs.getInt("id");
+                boolean result2 = orderItemModel.saveOrderItems(orderDTO.getOrderItems(), orderId);
+            }
         } else {
-        
+            throw new SQLException();
         }
-        
+        return true;
     }
     
 }

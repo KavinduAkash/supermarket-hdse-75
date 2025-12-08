@@ -9,11 +9,11 @@ public class OrderItemModel {
 
     private final ItemModel itemModel = new ItemModel();
     
-    public void saveOrderItems(List<OrderItemDTO> orderItemList, int orderId) throws SQLException {
+    public boolean saveOrderItems(List<OrderItemDTO> orderItemList, int orderId) throws SQLException {
     
         for (OrderItemDTO orderItemDTO : orderItemList) {
             
-            boolean result = CrudUtil.execute("INSERT INTO order_items VALUES (?, ?, ?, ?)", 
+            boolean result = CrudUtil.execute("INSERT INTO order_items (order_id, item_id, qty, price) VALUES (?, ?, ?, ?)", 
                     orderId,
                     orderItemDTO.getItemId(),
                     orderItemDTO.getQty(),
@@ -21,13 +21,20 @@ public class OrderItemModel {
             );
             
             if(result) {
-                itemModel.decreseItemQty(orderItemDTO.getItemId(), orderItemDTO.getQty());
-            } else {
+                
+                boolean result1 = itemModel.decreseItemQty(orderItemDTO.getItemId(), orderItemDTO.getQty());
             
+                if(!result1) {
+                    throw new SQLException();
+                }
+                
+            } else {
+                throw new SQLException();
             }
             
         }
         
+        return true;
     }
     
     
