@@ -10,6 +10,14 @@ public class OrderItemDTO {
     public OrderItemDTO() {
     }
 
+    public OrderItemDTO(int itemId, int qty, double unitPrice) {
+        this.itemId = itemId;
+        this.qty = qty;
+        this.unitPrice = unitPrice;
+    }
+
+    
+    
     public OrderItemDTO(int id, int itemId, int qty, double unitPrice) {
         this.id = id;
         this.itemId = itemId;
