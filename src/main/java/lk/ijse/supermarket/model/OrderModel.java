@@ -1,36 +1,52 @@
 package lk.ijse.supermarket.model;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import lk.ijse.supermarket.db.DBConnection;
 import lk.ijse.supermarket.dto.OrderDTO;
 import lk.ijse.supermarket.dto.OrderItemDTO;
 import lk.ijse.supermarket.util.CrudUtil;
 
 public class OrderModel {
 
-    private final OrderItemModel orderItemModel = new OrderItemModel(); 
+    private final OrderItemModel orderItemModel = new OrderItemModel();
     
     public boolean placeOrder(OrderDTO orderDTO) throws SQLException {
-    
-        // orders table
-        boolean result = CrudUtil.execute(
-                "INSERT INTO orders (date, customer_id) VALUES (?,?)", 
-                orderDTO.getDate(),
-                orderDTO.getCustomerId()
-                );
+        Connection conn = DBConnection.getInstance().getConnection();
         
-        // order_items table
-        if(result) {
-            ResultSet rs = CrudUtil.execute("SELECT id FROM orders ORDER BY id DESC LIMIT 1");
-            if(rs.next()) {
-                int orderId = rs.getInt("id");
-                boolean result2 = orderItemModel.saveOrderItems(orderDTO.getOrderItems(), orderId);
+        try {
+           
+            conn.setAutoCommit(false);
+
+            // orders table
+            boolean result = CrudUtil.execute(
+                    "INSERT INTO orders (date, customer_id) VALUES (?,?)", 
+                    orderDTO.getDate(),
+                    orderDTO.getCustomerId()
+                    );
+
+            // order_items table
+            if(result) {
+                ResultSet rs = CrudUtil.execute("SELECT id FROM orders ORDER BY id DESC LIMIT 1");
+                if(rs.next()) {
+                    int orderId = rs.getInt("id");
+                    boolean result2 = orderItemModel.saveOrderItems(orderDTO.getOrderItems(), orderId);
+                }
+            } else {
+                throw new SQLException();
             }
-        } else {
-            throw new SQLException();
+            conn.commit();
+            return true;
+            
+        } catch(Exception e) {
+            conn.rollback();
+            throw e;
+        } finally {
+            conn.setAutoCommit(true);
         }
-        return true;
+        
     }
     
 }
