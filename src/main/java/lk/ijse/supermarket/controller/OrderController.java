@@ -1,6 +1,8 @@
 package lk.ijse.supermarket.controller;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -19,6 +21,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import lk.ijse.supermarket.dto.CustomerDTO;
 import lk.ijse.supermarket.dto.ItemDTO;
+import lk.ijse.supermarket.dto.OrderDTO;
 import lk.ijse.supermarket.dto.OrderItemDTO;
 import lk.ijse.supermarket.dto.OrderItemTM;
 import lk.ijse.supermarket.model.CustomerModel;
@@ -285,7 +288,7 @@ public class OrderController implements Initializable {
               orderItemList.add(orderItem);
           }
         
-          new OrderDTO();
+          OrderDTO orderDTO = new OrderDTO(customerId, new Date(), orderItemList);
         
     }
     
