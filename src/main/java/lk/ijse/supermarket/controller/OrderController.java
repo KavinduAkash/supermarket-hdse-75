@@ -11,7 +11,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import lk.ijse.supermarket.dto.CustomerDTO;
 import lk.ijse.supermarket.dto.ItemDTO;
 import lk.ijse.supermarket.dto.OrderItemTM;
@@ -51,10 +54,32 @@ public class OrderController implements Initializable {
     private TextField qtyField;
     
     
+    @FXML
+    private TableColumn<OrderItemTM, String> colItemName;
+
+    @FXML
+    private TableColumn<OrderItemTM, Integer> colQty;
+
+    @FXML
+    private TableColumn<OrderItemTM, Double> colTotalPrice;
+
+    @FXML
+    private TableColumn<OrderItemTM, Double> colUnitPrice;
+    
+    @FXML
+    private TableView<OrderItemTM> tblOrderItem;
+
+    
+    
     private final ObservableList<OrderItemTM> orderItemObList = FXCollections.observableArrayList();
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        colItemName.setCellValueFactory(new PropertyValueFactory<>("itemName"));
+        colQty.setCellValueFactory(new PropertyValueFactory<>("qty"));
+        colUnitPrice.setCellValueFactory(new PropertyValueFactory<>("itemPrice"));
+        colTotalPrice.setCellValueFactory(new PropertyValueFactory<>("totalPrice"));
         
         loadComboCustomerId();
         loadComboItemId();
@@ -165,6 +190,14 @@ public class OrderController implements Initializable {
         OrderItemTM orderItemTM = new OrderItemTM(itemId, itemName, Double.parseDouble(itemPrice), Integer.parseInt(qty), totalItemPrice);
         
         orderItemObList.add(orderItemTM);
+        
+        loadOrderItemTbl();
+        
+    }
+    
+    private void loadOrderItemTbl() {
+    
+        tblOrderItem.setItems(orderItemObList);
         
     }
     
