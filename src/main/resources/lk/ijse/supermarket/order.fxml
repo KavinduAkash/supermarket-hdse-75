@@ -28,25 +28,25 @@
       <VBox layoutX="14.0" layoutY="38.0" prefHeight="43.0" prefWidth="150.0">
          <children>
             <Label text="Customer ID:" />
-            <ComboBox fx:id="comboCustomerId" prefWidth="150.0" style="-fx-border-color: black; -fx-border-width: 0 0 2px 0; -fx-background-color: none;" />
+            <ComboBox fx:id="comboCustomerId" onAction="#handleSelectComboCustomerId" prefWidth="150.0" style="-fx-border-color: black; -fx-border-width: 0 0 2px 0; -fx-background-color: none;" />
          </children>
       </VBox>
       <VBox layoutX="173.0" layoutY="38.0" prefHeight="43.0" prefWidth="150.0">
          <children>
             <Label text="Customer Name" />
-            <Label text="-" />
+            <Label fx:id="lblCustomerNameValue" text="-" />
          </children>
       </VBox>
       <VBox layoutX="282.0" layoutY="38.0" prefHeight="43.0" prefWidth="150.0">
          <children>
             <Label text="Customer Address:" />
-            <Label text="-" />
+            <Label fx:id="lblCustomerAddressValue" text="-" />
          </children>
       </VBox>
       <VBox layoutX="436.0" layoutY="38.0" prefHeight="43.0" prefWidth="150.0">
          <children>
             <Label text="Customer Salary:" />
-            <Label text="-" />
+            <Label fx:id="lblCustomerSalaryValue" text="-" />
          </children>
       </VBox>
       <VBox layoutX="16.0" layoutY="93.0" prefHeight="43.0" prefWidth="150.0">
