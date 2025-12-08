@@ -9,8 +9,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -67,6 +69,9 @@ public class OrderController implements Initializable {
     private TableColumn<OrderItemTM, Double> colUnitPrice;
     
     @FXML
+    private TableColumn<OrderItemTM, Void> colAction;
+    
+    @FXML
     private TableView<OrderItemTM> tblOrderItem;
     
     
@@ -83,6 +88,18 @@ public class OrderController implements Initializable {
         colQty.setCellValueFactory(new PropertyValueFactory<>("qty"));
         colUnitPrice.setCellValueFactory(new PropertyValueFactory<>("itemPrice"));
         colTotalPrice.setCellValueFactory(new PropertyValueFactory<>("totalPrice"));
+        
+        colAction.setCellFactory(cell -> new TableCell<OrderItemTM, Void>() {
+        
+            Button btn = new Button("Remove");
+            
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item,empty);
+                setGraphic(empty?null:btn);
+            }
+            
+        });
         
         loadComboCustomerId();
         loadComboItemId();

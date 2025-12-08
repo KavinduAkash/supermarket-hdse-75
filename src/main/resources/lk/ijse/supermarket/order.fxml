@@ -95,10 +95,11 @@
       </HBox>
       <TableView fx:id="tblOrderItem" layoutX="15.0" layoutY="218.0" prefHeight="127.0" prefWidth="571.0">
         <columns>
-          <TableColumn fx:id="colItemName" prefWidth="231.0" text="Item Name" />
-          <TableColumn fx:id="colUnitPrice" prefWidth="106.0" text="Unit Price" />
-            <TableColumn fx:id="colQty" prefWidth="100.0" text="QTY" />
-            <TableColumn fx:id="colTotalPrice" prefWidth="133.0" text="Total Price" />
+          <TableColumn fx:id="colItemName" prefWidth="204.30317497253418" text="Item Name" />
+          <TableColumn fx:id="colUnitPrice" prefWidth="133.6968231201172" text="Unit Price" />
+            <TableColumn fx:id="colQty" minWidth="0.0" prefWidth="0.0" text="QTY" />
+            <TableColumn fx:id="colTotalPrice" prefWidth="121.00003051757812" text="Total Price" />
+            <TableColumn fx:id="colAction" prefWidth="112.12738037109375" text="Action" />
         </columns>
       </TableView>
       <VBox layoutX="16.0" layoutY="351.0" prefHeight="43.0" prefWidth="150.0">
