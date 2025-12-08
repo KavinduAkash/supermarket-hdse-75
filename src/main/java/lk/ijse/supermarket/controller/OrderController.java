@@ -68,7 +68,10 @@ public class OrderController implements Initializable {
     
     @FXML
     private TableView<OrderItemTM> tblOrderItem;
-
+    
+    
+    @FXML
+    private Label lblOrderTotal;
     
     
     private final ObservableList<OrderItemTM> orderItemObList = FXCollections.observableArrayList();
@@ -198,6 +201,19 @@ public class OrderController implements Initializable {
     private void loadOrderItemTbl() {
     
         tblOrderItem.setItems(orderItemObList);
+        calcOrderTotal();
+        
+    }
+    
+    private void calcOrderTotal() {
+        
+        double total = 0.0;
+        
+        for (OrderItemTM orderItemTM : orderItemObList) {
+            total+=orderItemTM.getTotalPrice();
+        }
+        
+        lblOrderTotal.setText(String.valueOf(total));
         
     }
     
