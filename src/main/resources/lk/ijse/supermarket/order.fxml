@@ -76,7 +76,7 @@
       <VBox layoutX="16.0" layoutY="157.0" prefHeight="43.0" prefWidth="99.0">
          <children>
             <Label text="QTY" />
-            <TextField style="-fx-background-color: none; -fx-border-color: black; -fx-border-width: 0 0 2px 0;" />
+            <TextField fx:id="qtyField" style="-fx-background-color: none; -fx-border-color: black; -fx-border-width: 0 0 2px 0;" />
          </children>
       </VBox>
       <HBox alignment="CENTER_RIGHT" layoutX="148.0" layoutY="167.0" prefHeight="27.0" prefWidth="437.0">
@@ -86,7 +86,7 @@
                   <Insets bottom="10.0" right="10.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" style="-fx-background-color: blue;" text="Add to cart" textFill="WHITE">
+            <Button mnemonicParsing="false" onAction="#handleAddToCart" style="-fx-background-color: blue;" text="Add to cart" textFill="WHITE">
                <HBox.margin>
                   <Insets bottom="10.0" right="10.0" />
                </HBox.margin>

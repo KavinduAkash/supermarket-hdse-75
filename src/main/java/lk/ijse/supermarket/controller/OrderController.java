@@ -11,8 +11,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import lk.ijse.supermarket.dto.CustomerDTO;
 import lk.ijse.supermarket.dto.ItemDTO;
+import lk.ijse.supermarket.dto.OrderItemTM;
 import lk.ijse.supermarket.model.CustomerModel;
 import lk.ijse.supermarket.model.ItemModel;
 
@@ -44,6 +46,12 @@ public class OrderController implements Initializable {
 
     @FXML
     private Label lblItemQtyValue;
+    
+    @FXML
+    private TextField qtyField;
+    
+    
+    private final ObservableList<OrderItemTM> orderItemObList = FXCollections.observableArrayList();
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -140,6 +148,23 @@ public class OrderController implements Initializable {
         } catch(Exception e) {
             e.printStackTrace();
         }
+        
+    }
+    
+    @FXML
+    private void handleAddToCart(ActionEvent event) {
+
+        Number selectedId = comboItemId.getSelectionModel().getSelectedItem();
+        
+        int itemId = selectedId.intValue();
+        String itemName = lblItemNameValue.getText();
+        String itemPrice = lblItemPriceValue.getText();
+        String qty = qtyField.getText();
+        double totalItemPrice = Double.parseDouble(itemPrice) * Integer.parseInt(qty);
+        
+        OrderItemTM orderItemTM = new OrderItemTM(itemId, itemName, Double.parseDouble(itemPrice), Integer.parseInt(qty), totalItemPrice);
+        
+        orderItemObList.add(orderItemTM);
         
     }
     
