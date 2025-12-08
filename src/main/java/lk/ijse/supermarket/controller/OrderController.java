@@ -93,6 +93,17 @@ public class OrderController implements Initializable {
         
             Button btn = new Button("Remove");
             
+            {
+                btn.setOnAction(event -> {
+                    
+                    OrderItemTM item = getTableView().getItems().get(getIndex());
+                    orderItemObList.remove(item);
+                    loadOrderItemTbl();
+                    
+                });   
+            }
+           
+           
             @Override
             protected void updateItem(Void item, boolean empty) {
                 super.updateItem(item,empty);
