@@ -28,7 +28,7 @@
       <VBox layoutX="14.0" layoutY="38.0" prefHeight="43.0" prefWidth="150.0">
          <children>
             <Label text="Customer ID:" />
-            <ComboBox prefWidth="150.0" style="-fx-border-color: black; -fx-border-width: 0 0 2px 0; -fx-background-color: none;" />
+            <ComboBox fx:id="comboCustomerId" prefWidth="150.0" style="-fx-border-color: black; -fx-border-width: 0 0 2px 0; -fx-background-color: none;" />
          </children>
       </VBox>
       <VBox layoutX="173.0" layoutY="38.0" prefHeight="43.0" prefWidth="150.0">
