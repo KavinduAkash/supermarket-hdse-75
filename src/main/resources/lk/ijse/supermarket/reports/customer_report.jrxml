@@ -35,9 +35,6 @@
 Panadura
 ගෙදර යන ගමන්...]]></text>
 		</element>
-		<element kind="textField" uuid="4377e7ed-be1f-4772-941d-1be47a1793f9" x="80" y="2" width="100" height="30" pattern="MMMMM dd, yyyy">
-			<expression><![CDATA[new java.util.Date()]]></expression>
-		</element>
 	</pageHeader>
 	<columnHeader height="23" splitType="Stretch">
 		<element kind="staticText" uuid="9df33b32-4579-4dc8-aa37-0b984c7543b2" x="80" y="0" width="100" height="20" fontSize="16.0" vTextAlign="Middle">

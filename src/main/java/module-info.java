@@ -3,6 +3,7 @@ module lk.ijse.supermarket {
     requires javafx.fxml;
     requires java.base;
     requires java.sql;
+    requires net.sf.jasperreports.core;
     
     opens lk.ijse.supermarket.controller to javafx.fxml;
     opens lk.ijse.supermarket.dto to javafx.base;

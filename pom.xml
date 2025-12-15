@@ -33,26 +33,29 @@
             <version>9.5.0</version>
         </dependency> 
         
+       <!-- Jasper Reports -->
+        
         <!-- https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports -->
         <dependency>
             <groupId>net.sf.jasperreports</groupId>
             <artifactId>jasperreports</artifactId>
             <version>7.0.3</version>
         </dependency>
-            
+        
         <!-- https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports-fonts -->
         <dependency>
             <groupId>net.sf.jasperreports</groupId>
             <artifactId>jasperreports-fonts</artifactId>
             <version>7.0.3</version>
-        </dependency>    
-            
+        </dependency>
+        
         <!-- https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports-javaflow -->
         <dependency>
             <groupId>net.sf.jasperreports</groupId>
             <artifactId>jasperreports-javaflow</artifactId>
             <version>7.0.3</version>
-        </dependency>    
+        </dependency>  
+
     </dependencies>
     <build>
         <plugins>

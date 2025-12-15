@@ -1,7 +1,7 @@
 package lk.ijse.supermarket.model;
 
+import java.io.InputStream;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -9,6 +9,9 @@ import java.util.List;
 import lk.ijse.supermarket.db.DBConnection;
 import lk.ijse.supermarket.dto.CustomerDTO;
 import lk.ijse.supermarket.util.CrudUtil;
+
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.view.JasperViewer;
 
 public class CustomerModel {
 
@@ -135,5 +138,19 @@ public class CustomerModel {
         }
         
         return customerList;
+    }
+    
+    public void printCustomerReport() throws SQLException, JRException {
+        
+        Connection conn = DBConnection.getInstance().getConnection();
+        
+        InputStream inputStream = getClass().getResourceAsStream("/lk/ijse/supermarket/reports/customer_report.jrxml");
+        
+        JasperReport jr = JasperCompileManager.compileReport(inputStream);
+        
+        JasperPrint jp = JasperFillManager.fillReport(jr, null, conn); // (jr, params, connection_obj)
+    
+        JasperViewer.viewReport(jp);
+
     }
 }
