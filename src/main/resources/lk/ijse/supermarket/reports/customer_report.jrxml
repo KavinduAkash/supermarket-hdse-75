@@ -1,0 +1,76 @@
+<!-- Created with Jaspersoft Studio version 7.0.3.final using JasperReports Library version 7.0.3-41034ca841d452f3305ba55b9042260aaa1ab5dd  -->
+<jasperReport name="customer_reportjrxml" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0aa9f265-9f95-4da6-96e7-67c821762efb">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MYSQL"/>
+	<query language="SQL"><![CDATA[SELECT * FROM customer]]></query>
+	<field name="id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="id"/>
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="customer"/>
+	</field>
+	<field name="name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="name"/>
+		<property name="com.jaspersoft.studio.field.label" value="name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="customer"/>
+	</field>
+	<field name="address" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="address"/>
+		<property name="com.jaspersoft.studio.field.label" value="address"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="customer"/>
+	</field>
+	<field name="salary" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="salary"/>
+		<property name="com.jaspersoft.studio.field.label" value="salary"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="customer"/>
+	</field>
+	<background splitType="Stretch"/>
+	<title height="48" splitType="Stretch">
+		<element kind="staticText" uuid="05752aa1-f4af-4f83-98fe-0f7459f98150" x="169" y="9" width="216" height="30" forecolor="#FF0905" fontSize="19.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Customer List]]></text>
+		</element>
+	</title>
+	<pageHeader height="46" splitType="Stretch">
+		<element kind="staticText" uuid="d83a7a5e-32fa-4091-ba3a-441902aac33c" x="380" y="2" width="100" height="39">
+			<text><![CDATA[Food City, 
+Panadura
+ගෙදර යන ගමන්...]]></text>
+		</element>
+		<element kind="textField" uuid="4377e7ed-be1f-4772-941d-1be47a1793f9" x="80" y="2" width="100" height="30" pattern="MMMMM dd, yyyy">
+			<expression><![CDATA[new java.util.Date()]]></expression>
+		</element>
+	</pageHeader>
+	<columnHeader height="23" splitType="Stretch">
+		<element kind="staticText" uuid="9df33b32-4579-4dc8-aa37-0b984c7543b2" x="80" y="0" width="100" height="20" fontSize="16.0" vTextAlign="Middle">
+			<text><![CDATA[Name]]></text>
+		</element>
+		<element kind="staticText" uuid="c3c1d687-bc25-402d-9e08-847d76833be1" x="180" y="0" width="200" height="20" fontSize="16.0" vTextAlign="Middle">
+			<text><![CDATA[Address]]></text>
+		</element>
+		<element kind="staticText" uuid="2c80acaf-a496-4716-a1b5-634739a1169c" x="380" y="0" width="100" height="20" fontSize="16.0" hTextAlign="Right" vTextAlign="Middle">
+			<text><![CDATA[Salary]]></text>
+		</element>
+		<element kind="line" uuid="dbe27b27-1820-4072-8f24-b7c5365efb39" x="80" y="22" width="401" height="1">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</element>
+	</columnHeader>
+	<detail>
+		<band height="26" splitType="Stretch">
+			<element kind="textField" uuid="2910af62-72da-40d2-9c06-5a31e9e83175" x="80" y="1" width="100" height="20">
+				<expression><![CDATA[$F{name}]]></expression>
+			</element>
+			<element kind="textField" uuid="c6fe770e-0e86-4835-85d5-4bb6d1311b2f" x="180" y="1" width="200" height="20">
+				<expression><![CDATA[$F{address}]]></expression>
+			</element>
+			<element kind="textField" uuid="b376fb3b-6869-4566-a706-9bf4b86d9f72" x="380" y="1" width="100" height="20" hTextAlign="Right">
+				<expression><![CDATA[$F{salary}]]></expression>
+			</element>
+		</band>
+	</detail>
+	<columnFooter splitType="Stretch"/>
+	<pageFooter height="59" splitType="Stretch">
+		<element kind="staticText" uuid="c66f2189-3cb2-4bec-9e08-b88f773d3677" x="230" y="20" width="100" height="30" forecolor="#EA05FF" fontSize="16.0" bold="true" italic="false" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Thank you!]]></text>
+		</element>
+	</pageFooter>
+	<summary height="3" splitType="Stretch"/>
+</jasperReport>

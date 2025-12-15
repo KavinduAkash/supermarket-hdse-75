@@ -42,7 +42,7 @@
             <TextField fx:id="customerSalary" prefHeight="25.0" prefWidth="387.0" />
          </children>
       </HBox>
-      <HBox alignment="CENTER" layoutX="347.0" layoutY="190.0" prefHeight="49.0" prefWidth="230.0">
+      <HBox alignment="CENTER" layoutX="225.0" layoutY="190.0" prefHeight="49.0" prefWidth="352.0">
          <children>
             <Button mnemonicParsing="false" onAction="#saveCustomer" style="-fx-background-color: green;" text="Save" textFill="WHITE">
                <HBox.margin>
@@ -64,6 +64,7 @@
                   <Insets left="2.0" right="2.0" />
                </HBox.margin>
             </Button>
+            <Button mnemonicParsing="false" onAction="#handlePrint" style="-fx-background-color: purple;" text="Print" textFill="WHITE" />
          </children>
       </HBox>
       <TableView fx:id="tableCustomer" layoutX="11.0" layoutY="246.0" prefHeight="127.0" prefWidth="584.0">
