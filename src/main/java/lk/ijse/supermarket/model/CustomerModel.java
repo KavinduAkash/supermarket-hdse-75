@@ -150,7 +150,7 @@ public class CustomerModel {
         
         JasperPrint jp = JasperFillManager.fillReport(jr, null, conn); // (jr, params, connection_obj)
     
-        JasperViewer.viewReport(jp);
+        JasperViewer.viewReport(jp, false);
 
     }
 }
