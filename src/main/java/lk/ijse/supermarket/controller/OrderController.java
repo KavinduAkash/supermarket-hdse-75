@@ -51,6 +51,20 @@ CREATE TABLE order_items (
 );
 */
 
+/*
+INVOICE REPORT QUERY
+====================
+SELECT 
+    oi.id,
+    oi.order_id,
+    oi.item_id,
+    oi.qty,
+    oi.price
+    i.name AS item_name,
+FROM order_items oi
+JOIN item i ON oi.item_id = i.id
+*/
+
 public class OrderController implements Initializable {
 
     private final CustomerModel customerModel = new CustomerModel();
@@ -296,10 +310,13 @@ public class OrderController implements Initializable {
 
               OrderDTO orderDTO = new OrderDTO(customerId, new Date(), orderItemList);
 
-              boolean result = orderModel.placeOrder(orderDTO);
+              int result = orderModel.placeOrder(orderDTO); // result means order id
               
-              if(result) {
+              if(result>0) {
                 new Alert(Alert.AlertType.INFORMATION, "Order Placed Successfully!").show();
+                
+                orderModel.printInvoice(result);
+                
               } else {
                 new Alert(Alert.AlertType.ERROR, "Something went wrong!").show();
               }
