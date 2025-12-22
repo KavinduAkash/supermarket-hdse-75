@@ -11,11 +11,8 @@ import lk.ijse.supermarket.db.DBConnection;
 import lk.ijse.supermarket.dto.OrderDTO;
 import lk.ijse.supermarket.dto.OrderItemDTO;
 import lk.ijse.supermarket.util.CrudUtil;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
+
+import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.view.JasperViewer;
 
 public class OrderModel {

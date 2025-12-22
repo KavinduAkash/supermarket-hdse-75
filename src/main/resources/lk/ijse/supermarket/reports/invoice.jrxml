@@ -12,7 +12,6 @@
     oi.price
 FROM order_items oi
 JOIN item i ON oi.item_id = i.id
-WHERE oi.order_id = $P{ORDER_ID}
 ]]></query>
 	<field name="id" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.name" value="id"/>
@@ -53,11 +52,11 @@ WHERE oi.order_id = $P{ORDER_ID}
 		<element kind="textField" uuid="ea843738-93f1-4072-88da-19501ec1691d" x="90" y="8" width="90" height="30" bold="true" vTextAlign="Middle">
 			<expression><![CDATA[$P{ORDER_ID}]]></expression>
 		</element>
-		<element kind="textField" uuid="4ba7aee1-5ece-4865-8a65-ac21ea835c89" x="350" y="10" width="90" height="30" bold="true" vTextAlign="Middle">
-			<expression><![CDATA["Text Field"]]></expression>
+		<element kind="staticText" uuid="c7ede92d-0959-4c80-8dd3-51d1dcbfea48" x="220" y="10" width="60" height="30" fontSize="14.0" bold="true" vTextAlign="Middle">
+			<text><![CDATA[Date: ]]></text>
 		</element>
-		<element kind="staticText" uuid="c7ede92d-0959-4c80-8dd3-51d1dcbfea48" x="220" y="10" width="120" height="30" fontSize="14.0" bold="true" vTextAlign="Middle">
-			<text><![CDATA[Customer Name:]]></text>
+		<element kind="textField" uuid="759a11c0-c54f-453f-aeb5-17edb42211f0" x="280" y="10" width="90" height="30" bold="true" vTextAlign="Middle">
+			<expression><![CDATA[DATE( )]]></expression>
 		</element>
 	</pageHeader>
 	<columnHeader height="75" splitType="Stretch">
@@ -89,7 +88,7 @@ WHERE oi.order_id = $P{ORDER_ID}
 				<expression><![CDATA[$F{price}]]></expression>
 			</element>
 			<element kind="textField" uuid="40347cc7-58b7-4617-970a-7c339b81d1c5" x="430" y="10" width="130" height="30" hTextAlign="Right">
-				<expression><![CDATA[$F{qty}.doubleValue() * $F{price}.doubleValue()]]></expression>
+				<expression><![CDATA[$F{price}.doubleValue() * $F{qty}]]></expression>
 			</element>
 			<element kind="textField" uuid="9760a4f0-c393-4dab-a66e-06d9f973f0b7" x="0" y="10" width="80" height="30">
 				<expression><![CDATA[$F{item_id}]]></expression>
